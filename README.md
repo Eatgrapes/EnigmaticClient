@@ -4,10 +4,8 @@
 ![Forge](https://img.shields.io/badge/Forge-11.15.1.2318-orange)
 ![Stage](https://img.shields.io/badge/Stage-Experimental-red)
 
-
-## ❗ Critical Notice
-```diff
-- PROJECT UNDER ACTIVE DEVELOPMENT
-- DO NOT REPORT ISSUES/BUGS
-- NO SUPPORT WILL BE PROVIDED
-- USE AT YOUR OWN RISK
+> [!WARNING]  
+> **ACTIVE DEVELOPMENT NOTICE**  
+> This mod is in **unstable pre-release state**:
+> - DO NOT REPORT ISSUES
+> - NO SUPPORT WILL BE PROVIDED
