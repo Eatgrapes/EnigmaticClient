@@ -5,7 +5,6 @@
 ![Stage](https://img.shields.io/badge/Stage-Experimental-red)
 
 > [!WARNING]  
-> **ACTIVE DEVELOPMENT NOTICE**  
-> This mod is in **unstable pre-release state**:
+> **This Mod is under development.**  
 > - DO NOT REPORT ISSUES
 > - NO SUPPORT WILL BE PROVIDED
