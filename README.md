@@ -5,6 +5,6 @@
 ![Stage](https://img.shields.io/badge/Stage-Experimental-red)
 
 > [!WARNING]  
-> **This Mod is under development.**  
+> **This Mod is under development**  
 > - DO NOT REPORT ISSUES
 > - NO SUPPORT WILL BE PROVIDED
