@@ -3,6 +3,7 @@ package com.github.eatgrapes.enigmaticclient;
 import com.github.eatgrapes.enigmaticclient.config.ConfigManager;
 import com.github.eatgrapes.enigmaticclient.module.Module;
 import com.github.eatgrapes.enigmaticclient.module.ModuleManager;
+import com.github.eatgrapes.enigmaticclient.ui.ClickguiScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.util.ChatComponentText;
@@ -11,7 +12,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import org.lwjgl.input.Keyboard;
 
 @Mod(
     modid = "enigmaticclient",
@@ -48,9 +51,12 @@ public class EnigmaticClient {
         ModuleManager.getInstance().initializeModules();
         ConfigManager.loadConfig();
         MinecraftForge.EVENT_BUS.register(this);
+        Keyboard.enableRepeatEvents(true); // Enable keyboard repeat for GUI input
         System.out.println("[Enigmatic] Client initialized");
     }
 
+    // ================================== Event Handlers ================================== //
+    
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
@@ -82,6 +88,22 @@ public class EnigmaticClient {
             wasInWorld = isInWorld;
         }
     }
+
+    @SubscribeEvent
+    public void onKeyInput(InputEvent.KeyInputEvent event) {
+        Minecraft mc = Minecraft.getMinecraft();
+        // Only trigger if in-game world exists (not in main menu)
+        if (mc.theWorld != null && Keyboard.getEventKeyState()) {
+            int keyCode = Keyboard.getEventKey();
+            
+            // Open ClickGUI on Right Shift press
+            if (keyCode == Keyboard.KEY_RSHIFT) {
+                mc.displayGuiScreen(new ClickguiScreen());
+            }
+        }
+    }
+
+    // ================================== Utility Methods ================================== //
 
     /**
      * Saves the config with a 60-second cooldown to prevent spamming.
@@ -135,6 +157,8 @@ public class EnigmaticClient {
                 showMessage(UNKNOWN_CMD);
         }
     }
+
+    // ================================== Helper Methods ================================== //
 
     private static void showHelp() {
         showMessage(HELP_MSG);
